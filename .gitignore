@@ -1,0 +1,20 @@
+# Node modules
+node_modules/
+
+# Hardhat cache and artifacts (compiled contracts)
+cache/
+artifacts/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment variables file
+.env
+
+# Optional: VSCode settings folder
+.vscode/
+
+# Optional: Mac system files
+.DS_Store
