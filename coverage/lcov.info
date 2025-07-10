@@ -1,5 +1,5 @@
 TN:
-SF:/Users/claudiohermida-new/Desktop/WORKSPACE/ETH_KIPU/ETH_KIPU_2025/ETH-KIPU-2025-TP-MOD-4-COPY/contracts/SimpleSwap.sol
+SF:/Users/claudiohermida-new/Desktop/WORKSPACE/ETH_KIPU/ETH_KIPU_2025/ETH-KIPU-2025-TP-MOD-4/contracts/SimpleSwap.sol
 FN:207,onlyBeforeDeadline
 FN:217,onlyValidAddress
 FN:237,_calculateAmountsToDeposit
@@ -152,7 +152,7 @@ BRF:54
 BRH:51
 end_of_record
 TN:
-SF:/Users/claudiohermida-new/Desktop/WORKSPACE/ETH_KIPU/ETH_KIPU_2025/ETH-KIPU-2025-TP-MOD-4-COPY/contracts/Token.sol
+SF:/Users/claudiohermida-new/Desktop/WORKSPACE/ETH_KIPU/ETH_KIPU_2025/ETH-KIPU-2025-TP-MOD-4/contracts/Token.sol
 FN:11,constructor
 FN:15,mint
 FNF:2
