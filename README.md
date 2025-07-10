@@ -33,3 +33,7 @@ Two deployments of **`Token.sol`**:
   <a href="https://sepolia.etherscan.io/address/0xE03d7e486096ca58874b81f9CA854633f3769667#code">https://sepolia.etherscan.io/address/0xE03d7e486096ca58874b81f9CA854633f3769667>
 - Token B
   <a href="https://sepolia.etherscan.io/address/0x48fE9b1E65477e8531406b25f114bA6762cC5F5C">https://sepolia.etherscan.io/address/0x48fE9b1E65477e8531406b25f114bA6762cC5F5C</a>
+
+## Demo Video with Scaffold-eth 2 frontend
+
+<a href="https://ipfs.io/ipfs/QmYXLkv5SSh9tc4vLJLXUeGA4syGxce6fx8oU155tAkFmg">https://ipfs.io/ipfs/QmYXLkv5SSh9tc4vLJLXUeGA4syGxce6fx8oU155tAkFmg</a>
