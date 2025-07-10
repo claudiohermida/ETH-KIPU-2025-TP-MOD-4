@@ -36,4 +36,4 @@ Two deployments of **`Token.sol`**:
 
 ## Demo Video with Scaffold-eth 2 frontend
 
-<a href="https://ipfs.io/ipfs/QmYXLkv5SSh9tc4vLJLXUeGA4syGxce6fx8oU155tAkFmg">https://ipfs.io/ipfs/QmYXLkv5SSh9tc4vLJLXUeGA4syGxce6fx8oU155tAkFmg</a>
+<a href="https://ipfs.io/ipfs/QmQjMGKiUQhRehw4BSLVAy69eiYzjtXPjEXsJbPkmYvuTj">https://ipfs.io/ipfs/QmQjMGKiUQhRehw4BSLVAy69eiYzjtXPjEXsJbPkmYvuTj</a>
