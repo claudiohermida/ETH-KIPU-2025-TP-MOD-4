@@ -1,80 +1,61 @@
-# 🏗 Scaffold-ETH 2
+# ETH-KIPU-2025-TP-MOD-4
+## Assigment for ETH KIPU 2025 Module 4:
+## Basic front-end to interact with SimpleSwap smart contract
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+We use Scaffold-Eth 2 <a href=”https://docs.scaffoldeth.io/”>https://docs.scaffoldeth.io</a> to provide a simple React/Next.js front-end to interact with the SimpleSwap contract (`packages/hardhat/contracts/SimpleSwap.sol`included in the repo, see 
+<a href="https://github.com/claudiohermida/ETH-KIPU-2025-TP-MOD-3"> https://github.com/claudiohermida/ETH-KIPU-2025-TP-MOD-3 </a> for a detailed description of the contract's functionality).
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+## Test Coverage
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
-
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
-
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
-
-## Requirements
-
-Before you begin, you need to install the following tools:
-
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
-
-## Quickstart
-
-To get started with Scaffold-ETH 2, follow the steps below:
-
-1. Install dependencies if it was skipped in CLI:
-
-```
-cd my-dapp-example
-yarn install
-```
-
-2. Run a local network in the first terminal:
-
-```
-yarn chain
-```
-
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/hardhat/hardhat.config.ts`.
-
-3. On a second terminal, deploy the test contract:
-
-```
-yarn deploy
-```
-
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
-
-4. On a third terminal, start your NextJS app:
-
-```
-yarn start
-```
-
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
-
-Run smart contract test with `yarn hardhat:test`
-
-- Edit your smart contracts in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
+The smart contracts have been tested (`packages/hardhat/test/SimpleSwapTest.js`) with the following coverage
 
 
-## Documentation
+File             |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
+-----------------|----------|----------|----------|----------|----------------|
+ contracts/      |      100 |    94.64 |      100 |      100 |                |
+  SimpleSwap.sol |      100 |    94.44 |      100 |      100 |                |
+  Token.sol      |      100 |      100 |      100 |      100 |                |
+-----------------|----------|----------|----------|----------|----------------|
+All files        |      100 |    94.64 |      100 |      100 |                |
+-----------------|----------|----------|----------|----------|----------------|
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
+## Deployments
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+The smart contracts have been deployed and verified in ***Sepolia*** testnet:
 
-## Contributing to Scaffold-ETH 2
+  **`SimpleSwap.sol`**:
+  <a href="https://sepolia.etherscan.io/address/0x00310D009428678e8E7Bf829BF4447F86B6f768B">https://sepolia.etherscan.io/address/0x00310D009428678e8E7Bf829BF4447F86B6f768B</a>
 
-We welcome contributions to Scaffold-ETH 2!
+__Test tokens__
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+Two deployments of **`Token.sol`**:
+- Token A
+  <a href="https://sepolia.etherscan.io/address/0xF357f5b73C5FB76D3630b96b8f4dC0c5460F926c">https://sepolia.etherscan.io/address/0xF357f5b73C5FB76D3630b96b8f4dC0c5460F926c</a>
+- Token B
+  <a href="https://sepolia.etherscan.io/address/0xBb4a49dcac65C4bAFa4cb9313A2796E19360A4D3">https://sepolia.etherscan.io/address/0xBb4a49dcac65C4bAFa4cb9313A2796E19360A4D3</a>
+
+## Frontend
+
+### Vercel app
+<a href="https://ethkipu2025tp4swap-claudiohermidas-projects.vercel.app/">https://ethkipu2025tp4swap-claudiohermidas-projects.vercel.app/</a>
+
+
+
+
+
+
+- To interact with the contract, it is required to have a funded Sepolia account to pay for transaction fees.
+  
+- The swap GUI allows any account holding token A to perform a swap. 
+  
+- When CONFIRMING a swap, the frontend checks whether the `simpleSwap` contract has enough `allowance` to perform the relevant `transfer`. If not, it will ask the user to `approve` the needed amount of tokens before proceeding with the Swap. 
+  
+- The top right corner displays the current token A `balance` of the connected wallet. 
+  
+- The bottom left corner displays the current price of token A in terms of token B. 
+
+
+
+### Demo Video with Scaffold-eth 2 frontend
+
+<a href="https://ipfs.io/ipfs/QmUL2tLskAombh3xkSaVB9d4dvjETwpmA5xAD1xQ2xToMU">https://ipfs.io/ipfs/QmUL2tLskAombh3xkSaVB9d4dvjETwpmA5xAD1xQ2xToMU</a>
