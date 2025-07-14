@@ -46,7 +46,7 @@ Two deployments of **`Token.sol`**:
 
 - To interact with the contract, it is required to have a funded Sepolia account to pay for transaction fees.
   
-- The swap GUI allows any account holding token A to perform a swap. 
+- In the `Home` tab/page, the swap GUI allows any account holding token A to perform a swap. 
   
 - When CONFIRMING a swap, the frontend checks whether the `simpleSwap` contract has enough `allowance` to perform the relevant `transfer`. If not, it will ask the user to `approve` the needed amount of tokens before proceeding with the Swap. 
   
