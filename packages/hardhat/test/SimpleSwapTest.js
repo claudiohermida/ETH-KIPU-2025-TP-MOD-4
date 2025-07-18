@@ -162,7 +162,7 @@ describe("SimpleSwap", function () {
       console.log("New timestamp (+60s):", newTimestamp);
     });
 
-    it("should revert if deadline expired", async function () {
+    it("addLiquidityshould revert if deadline expired", async function () {
       const { tokenA, tokenB, simpleSwap, deployer } = await loadFixture(deployFixture);
       
       // Attempt to add liquidity with a past deadline
@@ -174,7 +174,7 @@ describe("SimpleSwap", function () {
         amountA,
         amountB,
         deployer.address,
-        currentTimestamp - 1 // Set deadline to past timestamp
+        currentTimestamp - 60 // Set deadline to past timestamp
       )).to.be.revertedWithCustomError(simpleSwap, "DEADLINE_EXPIRED");
     });
 
@@ -340,6 +340,26 @@ describe("SimpleSwap", function () {
       expect(await tokenB.balanceOf(deployer.address)).to.equal(deployerInitialBalanceB - expectedBDeposit);
       expect(await simpleSwap.balanceOf(deployer.address)).to.equal(initialLiquidity + expectedLiquidityAdded);
     });
+
+    it("should not add liquidity if zero liquidity would be minted", async function () {
+      const { tokenA, tokenB, simpleSwap, deployer } = await loadFixture(deployFixture);
+        
+      const expectedADeposit = ethers.parseEther("2");
+      const expectedBDeposit = ethers.parseEther("200");
+
+      await expect(
+        simpleSwap.addLiquidity(
+          tokenA.target,
+          tokenB.target,
+          0n,
+          0n,
+          0n,
+          0n,
+          deployer.address,
+          newTimestamp + 60
+        )
+      ).not.to.emit(simpleSwap, "LiquidityAdded")
+    });
   });
   
   describe("Liquidity Removal", function () {
@@ -450,6 +470,22 @@ describe("SimpleSwap", function () {
         
     });
     
+
+    it("should revert if zero liquidity would be burned", async function () {
+      const { tokenA, tokenB, simpleSwap, deployer } = await loadFixture(deployFixtureWithInitialLiquidity);
+      await expect(
+        simpleSwap.removeLiquidity(
+          tokenA.target,
+          tokenB.target,
+          0n,
+          initialASupply,
+          initialBSupply,
+          deployer.address,
+          newTimestamp
+        )
+      ).to.be.reverted;
+    });
+
     it("should remove initial liquidity, emit event, burn LP tokens and transfer pool tokens", async function () {
       const { tokenA, tokenB, simpleSwap, deployer } = await loadFixture(deployFixtureWithInitialLiquidity);
         
@@ -561,6 +597,15 @@ describe("SimpleSwap", function () {
       await expect(simpleSwap.connect(deployer).swapExactTokensForTokens(
         initialASupply,
         0n,
+        [tokenB.target, deployer.address],
+        deployer.address,
+        newTimestamp
+      )).to.be.revertedWithCustomError(simpleSwap, "INVALID_TOKEN");
+
+
+      await expect(simpleSwap.connect(deployer).swapExactTokensForTokens(
+        initialASupply,
+        0n,
         [deployer.address, tokenB.target],
         deployer.address,
         newTimestamp
@@ -569,10 +614,37 @@ describe("SimpleSwap", function () {
       await expect(simpleSwap.connect(deployer).swapExactTokensForTokens(
         initialASupply,
         0n,
-        [tokenB.target, tokenB.target],
+        [deployer.address, tokenA.target],
         deployer.address,
         newTimestamp
       )).to.be.revertedWithCustomError(simpleSwap, "INVALID_TOKEN");
+
+      await expect(simpleSwap.connect(deployer).swapExactTokensForTokens(
+        initialASupply,
+        0n,
+        [deployer.address, deployer.address],
+        deployer.address,
+        newTimestamp
+      )).to.be.revertedWithCustomError(simpleSwap, "INVALID_TOKEN");
+      
+      
+      await expect(simpleSwap.connect(deployer).swapExactTokensForTokens(
+        initialASupply,
+        0n,
+        [tokenA.target, tokenB.target],
+        deployer.address,
+        newTimestamp
+      )).not.to.be.reverted;
+      
+      await expect(simpleSwap.connect(deployer).swapExactTokensForTokens(
+        initialASupply,
+        0n,
+        [tokenB.target, tokenA.target],
+        deployer.address,
+        newTimestamp
+      )).not.to.be.reverted;
+
+
     });
 
     it("should revert if the output amount does not meet minimum required", async function () {
@@ -588,6 +660,19 @@ describe("SimpleSwap", function () {
         deployer.address,
         newTimestamp
       )).to.be.revertedWithCustomError(simpleSwap, "INSUFFICIENT_OUTPUT_AMOUNT");
+    });
+
+    it("swapExactTokensForTokens should revert with when swapping with zero amountIn and zero reserve", async function () {
+      const { tokenA, tokenB, simpleSwap, deployer } = await loadFixture(deployFixture);
+      await expect(
+        simpleSwap.swapExactTokensForTokens(
+          0n,
+          0n,
+          [tokenA.target, tokenB.target],
+          deployer.address,
+          (await ethers.provider.getBlock("latest")).timestamp + 60
+        )
+      ).to.be.reverted; // division by zero
     });
 
     it("should swap tokens, emit event and transfer tokens", async function () {
@@ -642,6 +727,13 @@ describe("SimpleSwap", function () {
       
       expect(expectedAmountOut).to.equal((amountIn * reserveB) / (reserveA + amountIn))
     });
+
+    it("getAmountOut should revert if reserve and amountIn are zero", async function () {
+      const { simpleSwap } = await loadFixture(deployFixtureWithInitialLiquidity);
+      await expect(
+        simpleSwap.getAmountOut(0n, 0n, 100n)
+      ).to.be.reverted;
+    });
   });
 
   describe("getPrice", function () {
@@ -657,7 +749,7 @@ describe("SimpleSwap", function () {
       expect(price).to.equal((reserveB * ethers.parseEther("1")) / reserveA);
     });
 
-    it("should revert if there is no liquidity", async function () {
+    it("getPrice should revert if there is no liquidity", async function () {
       const { tokenA, tokenB, simpleSwap } = await loadFixture(deployFixture);
       
       await expect(simpleSwap.getPrice(tokenA.target, tokenB.target
