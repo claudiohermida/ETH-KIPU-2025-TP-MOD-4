@@ -7,18 +7,18 @@ We use Scaffold-Eth 2 <a href=”https://docs.scaffoldeth.io/”>https://docs.sc
 
 ## Test Coverage
 
-The smart contracts have been tested (`packages/hardhat/test/SimpleSwapTest.js`) with the following coverage
+The smart contracts have been tested (`packages/hardhat/test/SimpleSwapTest.js`) with the following **complete coverage**
 
 
+-----------------|----------|----------|----------|----------|----------------|
 File             |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
 -----------------|----------|----------|----------|----------|----------------|
- contracts/      |      100 |    94.64 |      100 |      100 |                |
-  SimpleSwap.sol |      100 |    94.44 |      100 |      100 |                |
+ contracts/      |      100 |      100 |      100 |      100 |                |
+  SimpleSwap.sol |      100 |      100 |      100 |      100 |                |
   Token.sol      |      100 |      100 |      100 |      100 |                |
 -----------------|----------|----------|----------|----------|----------------|
-All files        |      100 |    94.64 |      100 |      100 |                |
+All files        |      100 |      100 |      100 |      100 |                |
 -----------------|----------|----------|----------|----------|----------------|
-
 ## Deployments
 
 The smart contracts have been deployed and verified in ***Sepolia*** testnet:
