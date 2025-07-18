@@ -10,7 +10,7 @@ We use Scaffold-Eth 2 <a href=”https://docs.scaffoldeth.io/”>https://docs.sc
 The smart contracts have been tested (`packages/hardhat/test/SimpleSwapTest.js`) with the following **complete coverage**
 
 
------------------|----------|----------|----------|----------|----------------|
+
 File             |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
 -----------------|----------|----------|----------|----------|----------------|
  contracts/      |      100 |      100 |      100 |      100 |                |
