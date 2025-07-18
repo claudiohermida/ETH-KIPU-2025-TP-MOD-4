@@ -102,7 +102,7 @@ contract SimpleSwap is ISimpleSwap, ERC20 {
     // rather than overcomplicating the swap interface by adding the token addresses in every function call
     /// @notice The first token of the trading pair.
     IERC20 private immutable _tokenA;
-    /// @notice The first token of the trading pair.
+    /// @notice The second token of the trading pair.
     IERC20 private immutable _tokenB;
 
     /*///////////////////////////////////////////////////////////////
